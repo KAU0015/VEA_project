@@ -1,11 +1,10 @@
 package cz.vsb.vea.project.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class User {
@@ -23,18 +22,42 @@ public class User {
     @NotEmpty
     private String lastName;
 
+    @NotNull
     private LocalDate dayOfBirth;
+
+    @NotEmpty
+    private String password;
+
+    @NotNull
+    private String role;
+
+    @OneToMany(mappedBy = "user")
+    private List<Post> posts;
 
     public User(){
         System.out.println("User constructor");
     }
 
-    public User(long id, @NotEmpty String username, @NotEmpty String firstName, @NotEmpty String lastName, LocalDate dayOfBirth) {
+    public User(@NotEmpty String username, @NotEmpty String firstName, @NotEmpty String lastName, @NotNull LocalDate dayOfBirth, @NotEmpty String password, @NotNull String role, List<Post> posts) {
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dayOfBirth = dayOfBirth;
+        this.password = password;
+        this.role = role;
+        this.posts = posts;
+        System.out.println("User constructor with params");
+    }
+
+    public User(long id, @NotEmpty String username, @NotEmpty String firstName, @NotEmpty String lastName, @NotNull LocalDate dayOfBirth, @NotEmpty String password, @NotNull String role, List<Post> posts) {
         this.id = id;
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dayOfBirth = dayOfBirth;
+        this.password = password;
+        this.role = role;
+        this.posts = posts;
         System.out.println("User constructor with params");
     }
 
@@ -76,5 +99,29 @@ public class User {
 
     public void setDayOfBirth(LocalDate dayOfBirth) {
         this.dayOfBirth = dayOfBirth;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 }
