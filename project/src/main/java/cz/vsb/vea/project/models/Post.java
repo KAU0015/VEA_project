@@ -22,7 +22,7 @@ public class Post {
     @NotEmpty
     protected String content;
 
-    @Column(name = "user_id")
+    @Column(name = "user_id", insertable = false, updatable = false)
     protected long userId;
 
     @ManyToOne

@@ -36,6 +36,6 @@ public class CommentRepositoryJpa implements CommentRepositoryInterface {
 
     @Override
     public Comment find(long id) {
-        return em.find(Comment.class, id);
+        return em.find(Comment.class, (int)id);
     }
 }

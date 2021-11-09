@@ -11,12 +11,11 @@ import java.util.List;
 @Entity
 public class Comment extends Post{
 
-    @NotNull
+    @ManyToOne
     private Post post;
 
-    @ManyToOne
-    @JoinColumn(name = "post_id")
-    private long postId;
+    @JoinColumn(name = "post_id", insertable = false, updatable = false)
+    private long parentPostId;
 
     public Comment(@NotNull Post post) {
         super();
@@ -28,7 +27,7 @@ public class Comment extends Post{
         this.post = post;
 
         if (post != null) {
-            this.postId = post.getId();
+            this.parentPostId = post.getId();
         }
     }
 
@@ -37,7 +36,7 @@ public class Comment extends Post{
         this.post = post;
 
         if (post != null) {
-            this.postId = post.getId();
+            this.parentPostId = post.getId();
         }
     }
 
@@ -49,11 +48,11 @@ public class Comment extends Post{
         this.post = post;
     }
 
-    public long getPostId() {
-        return postId;
+    public long getParentPostId() {
+        return parentPostId;
     }
 
-    public void setPostId(long postId) {
-        this.postId = postId;
+    public void setParentPostId(long postId) {
+        this.parentPostId = postId;
     }
 }
