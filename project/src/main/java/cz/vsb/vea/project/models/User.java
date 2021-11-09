@@ -28,9 +28,6 @@ public class User {
     @NotEmpty
     private String password;
 
-    @NotNull
-    private String role;
-
     @OneToMany(mappedBy = "user")
     private List<Post> posts;
 
@@ -38,25 +35,23 @@ public class User {
         System.out.println("User constructor");
     }
 
-    public User(@NotEmpty String username, @NotEmpty String firstName, @NotEmpty String lastName, @NotNull LocalDate dayOfBirth, @NotEmpty String password, @NotNull String role, List<Post> posts) {
+    public User(@NotEmpty String username, @NotEmpty String firstName, @NotEmpty String lastName, @NotNull LocalDate dayOfBirth, @NotEmpty String password, List<Post> posts) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dayOfBirth = dayOfBirth;
         this.password = password;
-        this.role = role;
         this.posts = posts;
         System.out.println("User constructor with params");
     }
 
-    public User(long id, @NotEmpty String username, @NotEmpty String firstName, @NotEmpty String lastName, @NotNull LocalDate dayOfBirth, @NotEmpty String password, @NotNull String role, List<Post> posts) {
+    public User(long id, @NotEmpty String username, @NotEmpty String firstName, @NotEmpty String lastName, @NotNull LocalDate dayOfBirth, @NotEmpty String password, List<Post> posts) {
         this.id = id;
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dayOfBirth = dayOfBirth;
         this.password = password;
-        this.role = role;
         this.posts = posts;
         System.out.println("User constructor with params");
     }
@@ -107,14 +102,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 
     public List<Post> getPosts() {
