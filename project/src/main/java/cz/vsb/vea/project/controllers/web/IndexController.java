@@ -21,17 +21,17 @@ public class IndexController {
 
     @RequestMapping("/login")
     public String login(Model model, @RequestParam(value = "error", required = false) Boolean error){
-        if (error != null) {
+      /*  if (error != null) {
             model.addAttribute("loginError", true);
             return "index";
-        }
+        }*/
 
-        return "dashboard";
+        return "index";
     }
 
-    @RequestMapping("/signOut")
-    public String signOutPage(){
-        return "signOut";
+    @RequestMapping("/logout")
+    public String logout(){
+        return "index";
     }
 
     @RequestMapping("/dashboard")
