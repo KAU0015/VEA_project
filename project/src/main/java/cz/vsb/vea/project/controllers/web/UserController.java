@@ -25,6 +25,7 @@ public class UserController {
         }
 
         userService.createUser(user);
+        //model.addAttribute("users", userService.getUsers());
         return "index";
     }
 }

@@ -24,6 +24,7 @@ public class User {
     @NotEmpty
     private String lastName;
 
+    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dayOfBirth;
 
@@ -37,7 +38,7 @@ public class User {
         System.out.println("User constructor");
     }
 
-    public User(@NotEmpty String username, @NotEmpty String firstName, @NotEmpty String lastName, LocalDate dayOfBirth, @NotEmpty String password, List<Post> posts) {
+    public User(@NotEmpty String username, @NotEmpty String firstName, @NotEmpty String lastName, @NotNull LocalDate dayOfBirth, @NotEmpty String password, List<Post> posts) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -47,7 +48,7 @@ public class User {
         System.out.println("User constructor with params");
     }
 
-    public User(long id, @NotEmpty String username, @NotEmpty String firstName, @NotEmpty String lastName, LocalDate dayOfBirth, @NotEmpty String password, List<Post> posts) {
+    public User(long id, @NotEmpty String username, @NotEmpty String firstName, @NotEmpty String lastName, @NotNull LocalDate dayOfBirth, @NotEmpty String password, List<Post> posts) {
         this.id = id;
         this.username = username;
         this.firstName = firstName;

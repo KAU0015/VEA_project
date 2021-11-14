@@ -5,6 +5,8 @@ import cz.vsb.vea.project.repositories.UserRepositoryInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -15,7 +17,11 @@ public class UserService {
         userRepository.save(u);
 
         for(User uu:userRepository.getAllUsers()){
-            System.out.println(u.getUsername());
+            System.out.println(uu.getUsername());
         }
+    }
+
+    public List<User> getUsers(){
+        return userRepository.getAllUsers();
     }
 }

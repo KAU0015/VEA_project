@@ -6,29 +6,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Create new account</title>
-    <form th:action="@{user/add}" action="save" th:object="${user}">
+    <form th:action="@{/user/add}" action="save" method="post" th:object="${user}">
         <div>
             <input type="hidden" th:field="*{id}" />
         </div>
         <div>
             <label>Username:</label>
             <input type="text" th:field="*{username}" />
+            <span th:if="${#fields.hasErrors('username')}"
+                  th:errors="*{username}">Error</span>
+
         </div>
         <div>
             <label>First name:</label>
             <input type="text" th:field="*{firstName}" />
+            <span th:if="${#fields.hasErrors('firstName')}"
+                  th:errors="*{firstName}">Error</span>
         </div>
         <div>
             <label>Last name:</label>
             <input type="text" th:field="*{lastName}" />
+            <span th:if="${#fields.hasErrors('lastName')}"
+                  th:errors="*{lastName}">Error</span>
         </div>
         <div>
             <label>Day of birth:</label>
             <input type="date" placeholder="Select date" th:field="*{dayOfBirth}">
+            <span th:if="${#fields.hasErrors('dayOfBirth')}"
+                  th:errors="*{dayOfBirth}">Error</span>
         </div>
         <div>
             <label>Password:</label>
             <input type="text" th:field="*{password}" />
+            <span th:if="${#fields.hasErrors('password')}"
+                  th:errors="*{password}">Error</span>
         </div>
         <div>
             <button type="submit" value="save">Submit</button>
