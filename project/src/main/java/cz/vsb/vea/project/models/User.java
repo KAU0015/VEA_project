@@ -1,5 +1,7 @@
 package cz.vsb.vea.project.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -22,7 +24,7 @@ public class User {
     @NotEmpty
     private String lastName;
 
-    @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dayOfBirth;
 
     @NotEmpty
@@ -35,7 +37,7 @@ public class User {
         System.out.println("User constructor");
     }
 
-    public User(@NotEmpty String username, @NotEmpty String firstName, @NotEmpty String lastName, @NotNull LocalDate dayOfBirth, @NotEmpty String password, List<Post> posts) {
+    public User(@NotEmpty String username, @NotEmpty String firstName, @NotEmpty String lastName, LocalDate dayOfBirth, @NotEmpty String password, List<Post> posts) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -45,7 +47,7 @@ public class User {
         System.out.println("User constructor with params");
     }
 
-    public User(long id, @NotEmpty String username, @NotEmpty String firstName, @NotEmpty String lastName, @NotNull LocalDate dayOfBirth, @NotEmpty String password, List<Post> posts) {
+    public User(long id, @NotEmpty String username, @NotEmpty String firstName, @NotEmpty String lastName, LocalDate dayOfBirth, @NotEmpty String password, List<Post> posts) {
         this.id = id;
         this.username = username;
         this.firstName = firstName;
