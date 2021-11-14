@@ -10,6 +10,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
+
 @Controller
 public class UserController {
 
@@ -27,5 +29,12 @@ public class UserController {
         userService.createUser(user);
         //model.addAttribute("users", userService.getUsers());
         return "redirect:/";
+    }
+
+    @RequestMapping("/user/profile")
+    public String viewProfile(Model model, Principal principal){
+        User user = userService.findByUsername(principal.getName());
+        model.addAttribute("user", user);
+        return "user/userProfile";
     }
 }

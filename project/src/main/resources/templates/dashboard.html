@@ -11,5 +11,8 @@
 <form th:action="@{/logout}" th:method="post">
     <button type="submit">Logout</button>
 </form>
+<div>
+    <button th:onclick="window.location.href='/user/profile'">Profile</button>
+</div>
 </body>
 </html>

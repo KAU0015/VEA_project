@@ -12,11 +12,11 @@
         <form th:action="@{/login}" th:method="post">
             <div>
                 <label>Username:</label>
-                <input type="text"  th:name="username"/>
+                <input th:required="true" type="text"  th:name="username"/>
             </div>
             <div>
                 <label>Password:</label>
-                <input type="text"  th:name="password"/>
+                <input th:required="true" type="password"  th:name="password"/>
             </div>
             <button type="submit">Log in</button>
         </form>
