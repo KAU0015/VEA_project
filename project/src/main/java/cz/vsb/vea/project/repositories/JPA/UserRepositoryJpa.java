@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -40,5 +41,15 @@ public class UserRepositoryJpa implements UserRepositoryInterface {
     @Override
     public User find(long id) {
         return em.find(User.class, id);
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        TypedQuery<User> query = em.createQuery("select u from User u where u.username = :username", User.class);
+
+        List<User> users = query.setParameter("username", username).getResultList();
+        if(users.isEmpty())
+            return null;
+        return users.get(0);
     }
 }

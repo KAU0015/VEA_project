@@ -1,12 +1,17 @@
 package cz.vsb.vea.project.controllers.web;
 
 import cz.vsb.vea.project.models.User;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class IndexController {
+
 
     @RequestMapping("/")
     public String index(Model model) {
@@ -14,10 +19,25 @@ public class IndexController {
         return "index";
     }
 
-    @RequestMapping("/test")
+    @RequestMapping("/login")
+    public String login(Model model, @RequestParam(value = "error", required = false) Boolean error){
+        if (error != null) {
+            model.addAttribute("loginError", true);
+            return "index";
+        }
+
+        return "dashboard";
+    }
+
+    @RequestMapping("/signOut")
+    public String signOutPage(){
+        return "signOut";
+    }
+
+    @RequestMapping("/dashboard")
     public String test(Model model) {
 
-        return "test";
+        return "dashboard";
     }
 
     @RequestMapping("/create_account")
