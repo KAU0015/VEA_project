@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,12 @@ public class UserController {
 
     @RequestMapping("/user/add")
     public String addNewUser(@ModelAttribute @Validated User user, BindingResult userError, Model model) {
+        User existingUser = userService.findByUsername(user.getUsername());
+        if(existingUser != null){
+            FieldError error = new FieldError("user", "username", "An account already exists for this username!");
+            userError.addError(error);
+        }
+
         if(userError.hasErrors()) {
             model.addAttribute("user", user);
             System.out.println("error");
@@ -27,7 +35,6 @@ public class UserController {
         }
 
         userService.createUser(user);
-        //model.addAttribute("users", userService.getUsers());
         return "redirect:/";
     }
 

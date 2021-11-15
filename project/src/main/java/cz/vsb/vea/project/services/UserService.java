@@ -17,7 +17,7 @@ public class UserService {
         userRepository.save(u);
 
         for(User uu:userRepository.getAllUsers()){
-            System.out.println(uu.getUsername());
+            System.out.println(uu.getUsername() + uu.getFirstName());
         }
     }
 

@@ -15,20 +15,20 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotEmpty
+    @NotEmpty(message = "Cannot be empty!")
     private String username;
 
-    @NotEmpty
+    @NotEmpty(message = "Cannot be empty!")
     private String firstName;
 
-    @NotEmpty
+    @NotEmpty(message = "Cannot be empty!")
     private String lastName;
 
-    @NotNull
+    @NotNull(message = "No date selected!")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dayOfBirth;
 
-    @NotEmpty
+    @NotEmpty(message = "Cannot be empty!")
     private String password;
 
     @OneToMany(mappedBy = "user")

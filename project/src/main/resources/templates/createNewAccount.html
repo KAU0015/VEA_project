@@ -6,6 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Create new account</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/createNewAccount.css}" />
 </head>
 <body>
 <form th:action="@{/user/add}" action="save" method="post" th:object="${user}">
@@ -14,33 +15,33 @@
     </div>
     <div>
         <label>Username:</label>
-        <input th:required="true" type="text" th:field="*{username}" />
+        <input type="text" th:field="*{username}" />
         <span th:if="${#fields.hasErrors('username')}"
               th:errors="*{username}">Error</span>
 
     </div>
     <div>
         <label>Password:</label>
-        <input id="password1" th:required="true" type="password" th:field="*{password}" />
-        <input id="password2" th:required="true" type="password" />
+        <input id="password1"  type="password" th:field="*{password}" />
+
         <span th:if="${#fields.hasErrors('password')}"
               th:errors="*{password}">Error</span>
     </div>
     <div>
         <label>First name:</label>
-        <input th:required="true" type="text" th:field="*{firstName}" />
+        <input  type="text" th:field="*{firstName}" />
         <span th:if="${#fields.hasErrors('firstName')}"
               th:errors="*{firstName}">Error</span>
     </div>
     <div>
         <label>Last name:</label>
-        <input th:required="true" type="text" th:field="*{lastName}" />
+        <input type="text" th:field="*{lastName}" />
         <span th:if="${#fields.hasErrors('lastName')}"
               th:errors="*{lastName}">Error</span>
     </div>
     <div>
         <label>Day of birth:</label>
-        <input th:required="true" type="date" placeholder="Select date" th:field="*{dayOfBirth}">
+        <input type="date" placeholder="Select date" th:field="*{dayOfBirth}">
         <span th:if="${#fields.hasErrors('dayOfBirth')}"
               th:errors="*{dayOfBirth}">Error</span>
     </div>
