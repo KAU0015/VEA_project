@@ -6,24 +6,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/index.css}" />
+
 </head>
 <body>
-    <div>
-        <form th:action="@{/login}" th:method="post">
-            <div>
-                <label>Username:</label>
-                <input th:required="true" type="text"  th:name="username"/>
+    <div class="container">
+        <form th:action="@{/login}" th:method="post" class="login-form">
+            <table>
+                <tr>
+                    <td>
+                        <div class="login-label">Username:</div>
+                    </td>
+                    <td>
+                        <input th:required="true" type="text"  th:name="username"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="login-label">Password:</div>
+                    </td>
+                    <td>
+                        <input th:required="true" type="password"  th:name="password"/>
+                    </td>
+
+                </tr>
+            </table>
+            <div class="login-btn">
+                <button type="submit">Log in</button>
             </div>
-            <div>
-                <label>Password:</label>
-                <input th:required="true" type="password"  th:name="password"/>
-            </div>
-            <button type="submit">Log in</button>
         </form>
 
-    </div>
-    <div>
-        <button th:onclick="window.location.href='/create_account'">Create new account</button>
+        <div class="create-acc-btn">
+            <button th:onclick="window.location.href='/create_account'">Create new account</button>
+        </div>
     </div>
 </body>
 </html>

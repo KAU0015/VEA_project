@@ -73,7 +73,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().exceptionHandling().accessDeniedPage("/403");*/
 
         http.authorizeRequests()
-                .antMatchers("/", "/create_account").permitAll()
+                .antMatchers("/", "/create_account", "/user/add").permitAll()
+                .antMatchers( "/**/*.css").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

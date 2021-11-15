@@ -1,0 +1,77 @@
+.container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+
+.login-form{
+    background-color: dodgerblue;
+    padding: 20px;
+    border-radius: 20px;
+    color: white;
+}
+
+.login-form td:nth-child(1){
+    font-size: xx-large;
+}
+
+.login-form td:nth-child(2){
+    padding-left: 10px;
+}
+
+.login-form input{
+    font-size: larger;
+    border-radius: 10px;
+    border: 2px solid white;
+    padding: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.login-form input:focus{
+    outline: none;
+    border: 2px solid white;
+}
+
+.login-label{
+    margin-bottom: 10px;
+}
+
+.create-acc-btn{
+    text-align: center;
+}
+
+.create-acc-btn button{
+    border: none;
+    background-color: white;
+    color: dodgerblue;
+    font-size: x-large;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.create-acc-btn button:hover{
+    color: lightskyblue;
+}
+
+.login-btn{
+    text-align: center;
+}
+
+.login-btn button{
+    border-radius: 10px;
+    font-size: x-large;
+    padding: 5px 20px;
+    border: none;
+    cursor: pointer;
+    background-color: white;
+    margin-top: 5px;
+}
+
+.login-btn button:hover{
+    background-color: lightskyblue;
+}
+
