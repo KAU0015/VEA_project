@@ -1,11 +1,53 @@
 .container{
     position: absolute;
-    top: 50%;
+    top: 25%;
     left: 50%;
     -ms-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
     font-family: cursive;
+}
+
+.menu-panel{
+    display: flex;
+}
+
+.menu-panel a{
+    border: none;
+    background-color: white;
+    color: dodgerblue;
+    font-size: x-large;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.menu-panel a:hover{
+    color: lightskyblue;
+}
+
+.menu-panel button{
+    border: none;
+    background-color: white;
+    color: dodgerblue;
+    font-size: x-large;
+    text-decoration: underline;
+    cursor: pointer;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.menu-panel button:hover{
+    color: lightskyblue;
+}
+
+.menu-item{
+
+}
+
+.menu-item a{
+    margin-right: 15px;
+
 }
 
 button{
@@ -22,26 +64,26 @@ input{
     color: dodgerblue;
 }
 
-.create-new-account-form{
+.edit-account-form{
     background-color: dodgerblue;
     padding: 20px;
     border-radius: 20px;
     color: white;
 }
 
-.create-new-account-form table{
+.edit-account-form table{
     border-spacing: 0 0.5em;
 }
 
-.create-new-account-form td:nth-child(1){
+.edit-account-form td:nth-child(1){
     font-size: xx-large;
 }
 
-.create-new-account-form td:nth-child(2){
+.edit-account-form td:nth-child(2){
     padding-left: 10px;
 }
 
-.create-new-account-form input{
+.edit-account-form input{
     font-size: larger;
     border-radius: 10px;
     border: 2px solid white;
@@ -49,21 +91,21 @@ input{
     text-align: center;
 }
 
-.create-new-account-form input:focus{
+.edit-account-form input:focus{
     outline: none;
     border: 2px solid white;
 }
 
-.create-account-input{
+.edit-account-input{
     margin-bottom: 0px;
 }
 
 
-.create-account-btn{
+.edit-account-btn{
     text-align: center;
 }
 
-.create-account-btn button{
+.edit-account-btn button{
     border-radius: 10px;
     font-size: x-large;
     padding: 5px 20px;
@@ -73,6 +115,6 @@ input{
     margin-top: 5px;
 }
 
-.create-account-btn button:hover{
+.edit-account-btn button:hover{
     background-color: lightskyblue;
 }

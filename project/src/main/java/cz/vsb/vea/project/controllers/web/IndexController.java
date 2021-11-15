@@ -37,7 +37,7 @@ public class IndexController {
     @RequestMapping("/dashboard")
     public String test(Model model) {
 
-        return "dashboard";
+        return "user/dashboard";
     }
 
     @RequestMapping("/create_account")

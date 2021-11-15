@@ -16,6 +16,20 @@ input{
     font-family: cursive;
 }
 
+a{
+    font-family: cursive;
+    border: none;
+    background-color: white;
+    color: dodgerblue;
+    font-size: x-large;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+a:hover{
+    color: lightskyblue;
+}
+
 .login-form{
     background-color: dodgerblue;
     padding: 20px;

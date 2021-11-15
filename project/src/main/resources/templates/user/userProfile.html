@@ -5,25 +5,69 @@
       layout:decorate="layout">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>View profile</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/userProfile.css}" />
 </head>
 <body>
-    <div  th:object="${user}">
-        <div>
-            <div>Username:</div>
-            <div th:text="${user.username}"></div>
+    <div class="container" th:object="${user}">
+        <div class="menu-panel">
+            <div class="menu-item">
+                <a th:href="@{/posts}" href="profile">Posts</a>
+            </div>
+            <div class="menu-item">
+                <a th:href="@{/user/profile}" href="profile">Profile</a>
+            </div>
+            <div class="menu-item">
+                <a th:href="@{/users}" href="#">Users</a>
+            </div>
+            <div class="menu-item">
+                <form th:action="@{/logout}" th:method="post">
+                    <button type="submit">Logout</button>
+                </form>
+            </div>
         </div>
-        <div>
-            <div>First name:</div>
-            <div th:text="${user.firstName}"></div>
+
+        <div class="form-title">
+            Your profile
         </div>
-        <div>
-            <div>Last name:</div>
-            <div th:text="${user.lastName}"></div>
+        <div class="view-profile-form">
+            <table>
+                <tr>
+                    <td>
+                        <div>Username:</div>
+                    </td>
+                    <td>
+                        <div th:text="${user.username}"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>First name:</div>
+                    </td>
+                    <td>
+                        <div th:text="${user.firstName}"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>Last name:</div>
+                    </td>
+                    <td>
+                        <div th:text="${user.lastName}"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>Day of birth:</div>
+                    </td>
+                    <td>
+                        <div th:text="${user.dayOfBirth}"></div>
+                    </td>
+                </tr>
+            </table>
         </div>
-        <div>
-            <div>Day of birth:</div>
-            <div th:text="${user.dayOfBirth}"></div>
+        <div class="edit-acc-btn">
+            <a th:href="@{/edit_account}" href="#">Edit profile</a>
         </div>
     </div>
 </body>

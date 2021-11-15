@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/editAccount.css}" />
+</head>
+<body>
+<div class="container" th:object="${user}">
+    <div class="menu-panel">
+        <div class="menu-item">
+            <a th:href="@{/posts}" href="profile">Posts</a>
+        </div>
+        <div class="menu-item">
+            <a th:href="@{/user/profile}" href="profile">Profile</a>
+        </div>
+        <div class="menu-item">
+            <a th:href="@{/users}" href="#">Users</a>
+        </div>
+        <div class="menu-item">
+            <form th:action="@{/logout}" th:method="post">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+    </div>
+    <div class="form-title">
+        Edit Your Profile
+    </div>
+    <form class="edit-account-form" th:action="@{/user/profile/edit}" action="save" method="post" th:object="${user}">
+        <input type="hidden" th:field="*{id}" />
+        <input type="hidden" th:field="*{username}" />
+        <input type="hidden"  th:field="*{password}"/>
+        <table>
+            <tr>
+                <td>
+                    <div class="edit-account-label">First name:</div>
+                </td>
+                <td>
+                    <div>
+                        <input  type="text" th:field="*{firstName}" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <div class="edit-account-input">
+                        <div th:if="${#fields.hasErrors('firstName')}"
+                             th:errors="*{firstName}">Error</div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="edit-account-label">Last name:</div>
+                </td>
+                <td>
+                    <div>
+                        <input type="text" th:field="*{lastName}" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <div class="edit-account-input">
+                        <div th:if="${#fields.hasErrors('lastName')}"
+                             th:errors="*{lastName}">Error</div>
+                    </div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    <div class="edit-account-label">Day of birth:</div>
+                </td>
+                <td>
+                    <div>
+                        <input type="date" placeholder="Select date" th:field="*{dayOfBirth}">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <div class="edit-account-input">
+                        <div th:if="${#fields.hasErrors('dayOfBirth')}"
+                             th:errors="*{dayOfBirth}">Error</div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="edit-account-btn">
+            <button type="submit" value="save">Edit</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

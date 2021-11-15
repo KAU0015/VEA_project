@@ -44,4 +44,30 @@ public class UserController {
         model.addAttribute("user", user);
         return "user/userProfile";
     }
+
+    @RequestMapping("/edit_account")
+    public String editProfile(Model model, Principal principal){
+        User user = userService.findByUsername(principal.getName());
+        model.addAttribute("user", user);
+        return "user/editAccount";
+    }
+
+    @RequestMapping("/user/profile/edit")
+    public String editUser(@ModelAttribute @Validated User user, BindingResult userError, Model model) {
+        User existingUser = userService.findByUsername(user.getUsername());
+        if(existingUser != null && user.getId() != existingUser.getId()){
+            FieldError error = new FieldError("user", "username", "An account already exists for this username!");
+            userError.addError(error);
+        }
+
+        if(userError.hasErrors()) {
+            model.addAttribute("user", user);
+            System.out.println("error");
+            return "user/editAccount";
+        }
+
+        userService.createUser(user);
+        model.addAttribute("user", user);
+        return "user/userProfile";
+    }
 }

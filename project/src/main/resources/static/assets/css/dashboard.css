@@ -1,0 +1,55 @@
+.container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    font-family: cursive;
+}
+
+button{
+    font-family: cursive;
+}
+
+.menu-panel{
+    display: flex;
+}
+
+.menu-panel a{
+    border: none;
+    background-color: white;
+    color: dodgerblue;
+    font-size: x-large;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.menu-panel a:hover{
+    color: lightskyblue;
+}
+
+.menu-panel button{
+    border: none;
+    background-color: white;
+    color: dodgerblue;
+    font-size: x-large;
+    text-decoration: underline;
+    cursor: pointer;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.menu-panel button:hover{
+    color: lightskyblue;
+}
+
+.menu-item{
+
+}
+
+.menu-item a{
+    margin-right: 15px;
+
+}
