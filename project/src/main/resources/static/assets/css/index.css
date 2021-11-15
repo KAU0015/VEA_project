@@ -5,6 +5,15 @@
     -ms-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
+    font-family: cursive;
+}
+
+button{
+    font-family: cursive;
+}
+
+input{
+    font-family: cursive;
 }
 
 .login-form{
@@ -12,6 +21,10 @@
     padding: 20px;
     border-radius: 20px;
     color: white;
+}
+
+.login-form table{
+    border-spacing: 0 1em;
 }
 
 .login-form td:nth-child(1){
@@ -27,17 +40,12 @@
     border-radius: 10px;
     border: 2px solid white;
     padding: 5px;
-    margin-bottom: 10px;
     text-align: center;
 }
 
 .login-form input:focus{
     outline: none;
     border: 2px solid white;
-}
-
-.login-label{
-    margin-bottom: 10px;
 }
 
 .create-acc-btn{

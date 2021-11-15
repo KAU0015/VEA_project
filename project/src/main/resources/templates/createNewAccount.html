@@ -9,46 +9,125 @@
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/createNewAccount.css}" />
 </head>
 <body>
-<form th:action="@{/user/add}" action="save" method="post" th:object="${user}">
-    <div>
+<div class="container">
+    <div class="form-title">
+        Create New Account
+    </div>
+    <form class="create-new-account-form" th:action="@{/user/add}" action="save" method="post" th:object="${user}">
         <input type="hidden" th:field="*{id}" />
-    </div>
-    <div>
-        <label>Username:</label>
-        <input type="text" th:field="*{username}" />
-        <span th:if="${#fields.hasErrors('username')}"
-              th:errors="*{username}">Error</span>
+        <table>
+            <tr>
+                <td>
+                    <div class="create-account-label">Username:</div>
+                </td>
+                <td>
+                    <div>
+                        <input type="text" th:field="*{username}" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <div class="create-account-input">
+                         <div th:if="${#fields.hasErrors('username')}"
+                               th:errors="*{username}">Error</div>
+                    </div>
+                </td>
+            </tr>
 
-    </div>
-    <div>
-        <label>Password:</label>
-        <input id="password1"  type="password" th:field="*{password}" />
+            <tr>
+                <td>
+                    <div class="create-account-label">Password:</div>
+                </td>
+                <td>
+                    <div>
+                        <input type="password" th:field="*{password}" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <div class="create-account-input">
+                         <div th:if="${#fields.hasErrors('password')}"
+                               th:errors="*{password}">Error</div>
+                    </div>
+                </td>
+            </tr>
 
-        <span th:if="${#fields.hasErrors('password')}"
-              th:errors="*{password}">Error</span>
-    </div>
-    <div>
-        <label>First name:</label>
-        <input  type="text" th:field="*{firstName}" />
-        <span th:if="${#fields.hasErrors('firstName')}"
-              th:errors="*{firstName}">Error</span>
-    </div>
-    <div>
-        <label>Last name:</label>
-        <input type="text" th:field="*{lastName}" />
-        <span th:if="${#fields.hasErrors('lastName')}"
-              th:errors="*{lastName}">Error</span>
-    </div>
-    <div>
-        <label>Day of birth:</label>
-        <input type="date" placeholder="Select date" th:field="*{dayOfBirth}">
-        <span th:if="${#fields.hasErrors('dayOfBirth')}"
-              th:errors="*{dayOfBirth}">Error</span>
-    </div>
-    <div>
-        <button type="submit" value="save">Submit</button>
-    </div>
-</form>
+            <tr>
+                <td>
+                    <div class="create-account-label">First name:</div>
+                </td>
+                <td>
+                    <div>
+                        <input  type="text" th:field="*{firstName}" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <div class="create-account-input">
+                        <div th:if="${#fields.hasErrors('firstName')}"
+                              th:errors="*{firstName}">Error</div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="create-account-label">Last name:</div>
+                </td>
+                <td>
+                    <div>
+                        <input type="text" th:field="*{lastName}" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <div class="create-account-input">
+                        <div th:if="${#fields.hasErrors('lastName')}"
+                              th:errors="*{lastName}">Error</div>
+                    </div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    <div class="create-account-label">Day of birth:</div>
+                </td>
+                <td>
+                    <div>
+                        <input type="date" placeholder="Select date" th:field="*{dayOfBirth}">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <div class="create-account-input">
+                        <div th:if="${#fields.hasErrors('dayOfBirth')}"
+                              th:errors="*{dayOfBirth}">Error</div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="create-account-btn">
+            <button type="submit" value="save">Submit</button>
+        </div>
+    </form>
+</div>
+
 
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
