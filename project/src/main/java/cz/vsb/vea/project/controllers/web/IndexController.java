@@ -15,6 +15,12 @@ public class IndexController {
 
     @RequestMapping("/")
     public String index(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        if (!(auth instanceof AnonymousAuthenticationToken)) {
+
+            return "redirect:/dashboard";
+        }
 
         return "index";
     }

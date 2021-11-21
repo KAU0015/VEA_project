@@ -52,4 +52,18 @@ public class UserRepositoryJpa implements UserRepositoryInterface {
             return null;
         return users.get(0);
     }
+
+    @Override
+    public List<User> getAllUsersNoWithId(long id) {
+        TypedQuery<User> query = em.createQuery("select u from User u where u.id != :id", User.class);
+
+        return query.setParameter("id", id).getResultList();
+    }
+
+    @Override
+    public List<User> getAllUsersNoWithId(long id, String name) {
+        TypedQuery<User> query = em.createQuery("select u from User u where u.id != :id and u.username like concat('%',:name,'%')", User.class);
+
+        return query.setParameter("id", id).setParameter("name", name).getResultList();
+    }
 }

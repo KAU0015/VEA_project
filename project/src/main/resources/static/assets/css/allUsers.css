@@ -1,0 +1,119 @@
+.container{
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    font-family: cursive;
+}
+
+
+button{
+    font-family: cursive;
+}
+
+.menu-panel{
+    display: flex;
+}
+
+
+.menu-panel a{
+    border: none;
+    background-color: white;
+    color: dodgerblue;
+    font-size: x-large;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.menu-panel a:hover{
+    color: lightskyblue;
+}
+
+.menu-panel button{
+    border: none;
+    background-color: white;
+    color: dodgerblue;
+    font-size: x-large;
+    text-decoration: underline;
+    cursor: pointer;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.menu-panel button:hover{
+    color: lightskyblue;
+}
+
+.menu-item{
+
+}
+
+.menu-item a{
+    margin-right: 15px;
+
+}
+
+.form-title{
+    text-align: center;
+    font-size: xxx-large;
+    color: dodgerblue;
+}
+
+.display-users-form{
+    background-color: dodgerblue;
+    padding: 20px;
+    border-radius: 20px;
+    color: white;
+}
+
+.display-users-form table{
+    border-spacing: 0 0.5em;
+}
+
+.display-users-form th{
+    font-size: x-large;
+}
+
+.display-users-form td:nth-child(1){
+    font-size: xx-large;
+    color: white;
+}
+
+.display-users-form td:nth-child(2){
+    padding-left: 10px;
+    font-size: xx-large;
+}
+
+.display-users-form input{
+    font-size: larger;
+    border-radius: 10px;
+    border: 2px solid white;
+    padding: 5px;
+    text-align: center;
+    width: 300px;
+}
+
+.view-user a{
+    border: none;
+    background-color: none;
+    color: white;
+    font-size: xx-large;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.view-user a:hover{
+    color: lightskyblue;
+}
+
+.display-users-form input:focus{
+    outline: none;
+    border: 2px solid white;
+}
+
+.users-block{
+    text-align: center;
+}

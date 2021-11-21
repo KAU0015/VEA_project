@@ -28,4 +28,15 @@ public class UserService {
     public User findByUsername(String username){
         return userRepository.findByUsername(username);
     }
+
+    public List<User> getUserList(long id, String name){
+        if(name == null || name.length() == 0)
+            return userRepository.getAllUsersNoWithId(id);
+
+        return userRepository.getAllUsersNoWithId(id, name);
+    }
+
+    public User getUser(long id){
+        return userRepository.find(id);
+    }
 }

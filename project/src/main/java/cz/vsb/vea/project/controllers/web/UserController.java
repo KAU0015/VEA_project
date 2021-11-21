@@ -10,9 +10,12 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -69,5 +72,21 @@ public class UserController {
         userService.createUser(user);
         model.addAttribute("user", user);
         return "user/userProfile";
+    }
+
+    @RequestMapping("/users")
+    public String allUsers(@ModelAttribute("searchedUser") User searched, Model model, Principal principal){
+        model.addAttribute("searchedUser", searched);
+        User user = userService.findByUsername(principal.getName());
+        List<User> users = userService.getUserList(user.getId(), searched.getUsername());
+        model.addAttribute("users", users);
+        return "user/allUsers";
+    }
+
+    @RequestMapping("/user/{id}/detail")
+    public String userDetail(@PathVariable long id, Model model){
+        User userDetail = userService.getUser(id);
+        model.addAttribute("userDetail", userDetail);
+        return "user/userDetail";
     }
 }
