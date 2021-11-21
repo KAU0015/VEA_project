@@ -5,7 +5,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -17,12 +17,11 @@ public class Comment extends Post{
     @JoinColumn(name = "post_id", insertable = false, updatable = false)
     private long parentPostId;
 
-    public Comment(@NotNull Post post) {
+    public Comment() {
         super();
-        this.post = post;
     }
 
-    public Comment(@NotNull LocalDate date, @NotEmpty String content, User user, List<Comment> comments, @NotNull Post post) {
+    public Comment(LocalDateTime date, @NotEmpty String content, User user, List<Comment> comments, @NotNull Post post) {
         super(date, content, user, comments);
         this.post = post;
 
@@ -31,7 +30,7 @@ public class Comment extends Post{
         }
     }
 
-    public Comment(long id, @NotNull LocalDate date, @NotEmpty String content, User user, List<Comment> comments, @NotNull Post post) {
+    public Comment(long id, LocalDateTime date, @NotEmpty String content, User user, List<Comment> comments, @NotNull Post post) {
         super(id, date, content, user, comments);
         this.post = post;
 

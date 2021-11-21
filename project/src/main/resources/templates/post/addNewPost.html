@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Create new account</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/addNewPost.css}" />
+</head>
+<body>
+    <div class="container">
+        <div class="menu-panel">
+            <div class="menu-item">
+                <a th:href="@{/posts}" href="profile">Posts</a>
+            </div>
+            <div class="menu-item">
+                <a th:href="@{/user/profile}" href="profile">Profile</a>
+            </div>
+            <div class="menu-item">
+                <a th:href="@{/users}" href="#">Users</a>
+            </div>
+            <div class="menu-item">
+                <form th:action="@{/logout}" th:method="post">
+                    <button type="submit">Logout</button>
+                </form>
+            </div>
+        </div>
+        <div class="form-title">
+            Add New Post
+        </div>
+        <form class="add-new-post-form" th:action="@{/post/add}" action="save" method="post" th:object="${post}">
+            <input type="hidden" th:field="*{id}" />
+            <table>
+                <tr>
+                    <td>
+                        <div class="add-post-label">Title:</div>
+                    </td>
+                    <td>
+                        <div>
+                            <input type="text" th:field="*{title}" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <div class="add-post-input">
+                            <div th:if="${#fields.hasErrors('title')}"
+                                 th:errors="*{title}">Error</div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="add-post-label">Content:</div>
+                    </td>
+                    <td>
+                        <div>
+                            <textarea  type="text" th:field="*{content}" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <div class="add-post-input">
+                            <div th:if="${#fields.hasErrors('content')}"
+                                 th:errors="*{content}">Error</div>
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+            <div class="add-post-btn">
+                <button type="submit" value="save">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

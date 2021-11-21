@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Posts</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/allPosts.css}" />
+</head>
+<body>
+<div class="container">
+    <div class="menu-panel">
+        <div class="menu-item">
+            <a th:href="@{/posts}" href="profile">Posts</a>
+        </div>
+        <div class="menu-item">
+            <a th:href="@{/user/profile}" href="profile">Profile</a>
+        </div>
+        <div class="menu-item">
+            <a th:href="@{/users}" href="#">Users</a>
+        </div>
+        <div class="menu-item">
+            <form th:action="@{/logout}" th:method="post">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+    </div>
+    <div class="form-title">
+        Posts
+    </div>
+    <div>
+        <div class="add-post-btn">
+            <a th:href="@{/add_post}" href="#">Add new post</a>
+        </div>
+    </div>
+    <div class="display-posts-form">
+        <table>
+            <thead>
+            <tr>
+                <th>Title:</th>
+                <th>User:</th>
+                <th>Date:</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="post,iter :${mainPosts}">
+                    <td th:text="${post.title}"></td>
+                    <td th:text="${post.user.username}"></td>
+                    <td th:text="${post.date}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

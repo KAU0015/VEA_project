@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -16,8 +16,7 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected long id;
 
-    @NotNull
-    protected LocalDate date;
+    protected LocalDateTime date;
 
     @NotEmpty
     protected String content;
@@ -36,7 +35,7 @@ public class Post {
         System.out.println("Post constructor");
     }
 
-    public Post(@NotNull LocalDate date, @NotEmpty String content, User user, List<Comment> comments) {
+    public Post(LocalDateTime date, @NotEmpty String content, User user, List<Comment> comments) {
         this.date = date;
         this.content = content;
         this.user = user;
@@ -49,7 +48,7 @@ public class Post {
         System.out.println("Post constructor with params");
     }
 
-    public Post(long id, @NotNull LocalDate date, @NotEmpty String content, User user, List<Comment> comments) {
+    public Post(long id, LocalDateTime date, @NotEmpty String content, User user, List<Comment> comments) {
         this.id = id;
         this.date = date;
         this.content = content;
@@ -71,11 +70,11 @@ public class Post {
         this.id = id;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

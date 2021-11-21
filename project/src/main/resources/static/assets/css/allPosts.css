@@ -1,0 +1,108 @@
+.container{
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    font-family: cursive;
+}
+
+
+a{
+    font-family: cursive;
+    border: none;
+    background-color: white;
+    color: dodgerblue;
+    font-size: x-large;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+a:hover{
+    color: lightskyblue;
+}
+
+
+button{
+    font-family: cursive;
+}
+
+.menu-panel{
+    display: flex;
+}
+
+
+.menu-panel a{
+    border: none;
+    background-color: white;
+    color: dodgerblue;
+    font-size: x-large;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.menu-panel a:hover{
+    color: lightskyblue;
+}
+
+.menu-panel button{
+    border: none;
+    background-color: white;
+    color: dodgerblue;
+    font-size: x-large;
+    text-decoration: underline;
+    cursor: pointer;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.menu-panel button:hover{
+    color: lightskyblue;
+}
+
+.menu-item{
+
+}
+
+.menu-item a{
+    margin-right: 15px;
+
+}
+
+
+.form-title{
+    text-align: center;
+    font-size: xxx-large;
+    color: dodgerblue;
+}
+
+.add-post-btn{
+    text-align: center;
+}
+
+.display-posts-form{
+    background-color: dodgerblue;
+    padding: 20px;
+    border-radius: 20px;
+    color: white;
+}
+
+.display-posts-form table{
+    border-spacing: 0 0.5em;
+}
+
+.display-posts-form th{
+    font-size: x-large;
+}
+
+.display-posts-form td:nth-child(1){
+    font-size: xx-large;
+    color: white;
+}
+
+.display-posts-form td:nth-child(2){
+    padding-left: 10px;
+    font-size: xx-large;
+}
