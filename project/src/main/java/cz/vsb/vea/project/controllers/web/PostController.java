@@ -60,16 +60,16 @@ public class PostController {
     public String postDetail(@PathVariable long id, Model model){
         MainPost mainPost = postService.findMainPost(id);
         model.addAttribute("mainPost", mainPost);
-        model.addAttribute("comment", new Comment());
+        model.addAttribute("newComment", new Comment());
         return "post/postDetail";
     }
 
     @RequestMapping("/post/{id}/comment/add")
-    public String addComment(@PathVariable long id, @ModelAttribute @Validated Comment comment, Model model, BindingResult commentError, Principal principal){
+    public String addComment(@PathVariable long id, @ModelAttribute @Validated Comment newComment, Model model, BindingResult commentError, Principal principal){
         Post post = postService.findPost(id);
         User user = userService.findByUsername(principal.getName());
 
-        postService.addComment(post, comment, user);
+        postService.addComment(post, newComment, user);
 
         return "redirect:/posts";
     }

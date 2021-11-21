@@ -70,3 +70,44 @@ input{
     border-radius: 20px;
     color: white;
 }
+
+.post-head{
+    display: flex;
+}
+
+.post-head div{
+    margin: 10px;
+}
+
+.post-block textarea{
+    font-size: normal;
+    border-radius: 10px;
+    border: 2px solid white;
+    padding: 5px;
+    text-align: center;
+}
+
+.post-block textarea:focus{
+    outline: none;
+    border: 2px solid white;
+}
+
+.post-content{
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.add-comment-btn button{
+    border-radius: 10px;
+    font-size: x-large;
+    padding: 5px 20px;
+    border: none;
+    cursor: pointer;
+    background-color: white;
+    margin-top: 5px;
+}
+
+.add-comment-btn button:hover{
+    background-color: lightskyblue;
+}
+

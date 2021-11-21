@@ -1,0 +1,24 @@
+<div th:fragment="commentBlock (post, padding)">
+    <div class="post-block">
+        <div class="post-head">
+            <div th:text="${post.user.username}"></div>
+            <div th:text="${post.date}"></div>
+        </div>
+        <div class="post-content" th:text="${post.content}"></div>
+
+        <form class="add-comment" th:action="@{/post/{id}/comment/add(id=${post.id})}" action="save" method="post" th:object="${newComment}">
+            <input type="hidden" th:field="*{id}" />
+            <textarea th:field="*{content}" />
+            <div th:if="${#fields.hasErrors('content')}"
+                 th:errors="*{content}">Error</div>
+            <div class="add-comment-btn">
+                <button type="submit" value="save">Comment</button>
+            </div>
+        </form>
+
+        <div th:each="comm,iter :${post.comments}" th:style="'margin-left:' + ${padding} + 'px'">
+            <div th:replace="post/commentBlock.html :: commentBlock(post=${comm}, padding=${20})">
+            </div>
+        </div>
+    </div>
+</div>
