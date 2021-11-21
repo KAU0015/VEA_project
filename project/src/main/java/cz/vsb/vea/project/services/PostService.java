@@ -1,6 +1,8 @@
 package cz.vsb.vea.project.services;
 
+import cz.vsb.vea.project.models.Comment;
 import cz.vsb.vea.project.models.MainPost;
+import cz.vsb.vea.project.models.Post;
 import cz.vsb.vea.project.models.User;
 import cz.vsb.vea.project.repositories.CommentRepositoryInterface;
 import cz.vsb.vea.project.repositories.MainPostRepositoryInterface;
@@ -32,5 +34,22 @@ public class PostService {
         post.setDate(LocalDateTime.now());
         post.setUser(user);
         mainPostRepository.save(post);
+    }
+
+    public MainPost findMainPost(long id){
+        return mainPostRepository.find(id);
+    }
+
+    public Post findPost(long id){
+        return postRepository.find(id);
+    }
+
+    public void addComment(Post post, Comment comment, User user){
+        comment.setPost(post);
+        comment.setUser(user);
+        comment.setDate(LocalDateTime.now());
+        System.out.println("Post id: " + post.getId() + " Comment id: " + comment.getId() + " Parent post id: " + comment.getPost().getId());
+        commentRepository.save(comment);
+
     }
 }

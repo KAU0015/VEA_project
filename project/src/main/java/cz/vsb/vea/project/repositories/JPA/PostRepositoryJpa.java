@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -24,6 +25,7 @@ public class PostRepositoryJpa implements PostRepositoryInterface {
         return em.createQuery("select p from Post p", Post.class).getResultList();
     }
 
+    @Transactional
     @Override
     public Post save(Post p) {
         if (p.getId() == 0) {

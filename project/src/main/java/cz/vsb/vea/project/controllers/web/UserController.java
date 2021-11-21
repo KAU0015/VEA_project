@@ -41,6 +41,13 @@ public class UserController {
         return "redirect:/";
     }
 
+    @RequestMapping("/dashboard")
+    public String test(Model model, Principal principal) {
+        User user = userService.findByUsername(principal.getName());
+        model.addAttribute("user", user);
+        return "user/dashboard";
+    }
+
     @RequestMapping("/user/profile")
     public String viewProfile(Model model, Principal principal){
         User user = userService.findByUsername(principal.getName());

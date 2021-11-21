@@ -40,12 +40,6 @@ public class IndexController {
         return "index";
     }
 
-    @RequestMapping("/dashboard")
-    public String test(Model model) {
-
-        return "user/dashboard";
-    }
-
     @RequestMapping("/create_account")
     public String createNewAccount(Model model) {
         model.addAttribute("user", new User());

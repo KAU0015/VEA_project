@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -24,6 +25,7 @@ public class CommentRepositoryJpa implements CommentRepositoryInterface {
         return em.createQuery("select c from Comment c", Comment.class).getResultList();
     }
 
+    @Transactional
     @Override
     public Comment save(Comment c) {
         if (c.getId() == 0) {

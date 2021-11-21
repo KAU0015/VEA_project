@@ -26,6 +26,22 @@
             </form>
         </div>
     </div>
+    <div class="display-posts-form">
+        <table>
+            <thead>
+            <tr>
+                <th>Date:</th>
+                <th>Content:</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="post,iter :${user.posts}">
+                <td th:text="${post.content}"></td>
+                <td th:text="${post.date}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
 </div>
 

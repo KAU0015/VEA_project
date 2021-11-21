@@ -45,7 +45,7 @@
             </thead>
             <tbody>
                 <tr th:each="post,iter :${mainPosts}">
-                    <td th:text="${post.title}"></td>
+                    <td><a th:text="${post.title}" th:href="@{/post/{id}/detail(id=${post.id})}"></a></td>
                     <td th:text="${post.user.username}"></td>
                     <td th:text="${post.date}"></td>
                 </tr>

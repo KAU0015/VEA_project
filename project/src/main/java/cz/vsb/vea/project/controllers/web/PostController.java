@@ -1,5 +1,6 @@
 package cz.vsb.vea.project.controllers.web;
 
+import cz.vsb.vea.project.models.Comment;
 import cz.vsb.vea.project.models.MainPost;
 import cz.vsb.vea.project.models.Post;
 import cz.vsb.vea.project.models.User;
@@ -12,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
@@ -50,6 +52,24 @@ public class PostController {
         }
 
         postService.addNewPost(post, user);
+
+        return "redirect:/posts";
+    }
+
+    @RequestMapping("/post/{id}/detail")
+    public String postDetail(@PathVariable long id, Model model){
+        MainPost mainPost = postService.findMainPost(id);
+        model.addAttribute("mainPost", mainPost);
+        model.addAttribute("comment", new Comment());
+        return "post/postDetail";
+    }
+
+    @RequestMapping("/post/{id}/comment/add")
+    public String addComment(@PathVariable long id, @ModelAttribute @Validated Comment comment, Model model, BindingResult commentError, Principal principal){
+        Post post = postService.findPost(id);
+        User user = userService.findByUsername(principal.getName());
+
+        postService.addComment(post, comment, user);
 
         return "redirect:/posts";
     }
