@@ -1,11 +1,16 @@
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    height: 100%;
+}
+
+
 .container{
-    position: absolute;
-    top: 25%;
-    left: 50%;
-    -ms-transform: translateX(-50%) translateY(-50%);
-    -webkit-transform: translate(-50%,-50%);
-    transform: translate(-50%,-50%);
     font-family: cursive;
+    display: inline-block;
+    margin-top: 50px;
 }
 
 
@@ -69,11 +74,23 @@ button{
     color: white;
 }
 
+form{
+    padding-left: 10px;
+}
+
+input{
+    font-family: cursive;
+}
+
 .display-users-form table{
     border-spacing: 0 0.5em;
 }
 
-.display-users-form th{
+.display-users-form th:nth-child(1){
+    font-size: xx-large;
+}
+
+.display-users-form th:nth-child(2){
     font-size: x-large;
 }
 
@@ -88,7 +105,7 @@ button{
 }
 
 .display-users-form input{
-    font-size: larger;
+    font-size: x-large;
     border-radius: 10px;
     border: 2px solid white;
     padding: 5px;
