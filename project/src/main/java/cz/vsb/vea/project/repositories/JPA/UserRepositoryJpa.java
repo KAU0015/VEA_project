@@ -28,13 +28,12 @@ public class UserRepositoryJpa implements UserRepositoryInterface {
 
     @Transactional
     @Override
-    public User save(User u) {
+    public void save(User u) {
         if (u.getId() == 0) {
             em.persist(u);
         } else {
             u = em.merge(u);
         }
-        return u;
     }
 
     @Transactional

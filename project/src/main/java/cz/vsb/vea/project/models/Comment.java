@@ -47,11 +47,11 @@ public class Comment extends Post{
         this.post = post;
     }
 
-    public long getParentPostId() {
+    public long getPostId() {
         return parentPostId;
     }
 
-    public void setParentPostId(long postId) {
+    public void setPostId(long postId) {
         this.parentPostId = postId;
     }
 }

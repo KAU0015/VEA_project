@@ -7,7 +7,7 @@ import java.util.List;
 public interface UserRepositoryInterface {
 
     public List<User> getAllUsers();
-    public User save(User u);
+    public void save(User u);
     public User find(long id);
     public User findByUsername(String username);
     public List<User> getAllUsersNoWithId(long id);
