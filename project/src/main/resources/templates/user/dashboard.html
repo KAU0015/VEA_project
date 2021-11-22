@@ -26,17 +26,34 @@
             </form>
         </div>
     </div>
+    <div class="form-title">Your Last 10 Posts</div>
     <div class="display-posts-form">
         <table>
             <thead>
             <tr>
-                <th>Date:</th>
+                <th>Type:</th>
                 <th>Content:</th>
+                <th>Date:</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="post,iter :${user.posts}">
-                <td th:text="${post.content}"></td>
+            <tr th:each="post,iter :${posts}">
+                <td>
+                    <th:block th:if="${post instanceof T( cz.vsb.vea.project.models.MainPost)}">
+                        Post
+                    </th:block>
+                    <th:block th:if="${!(post instanceof T( cz.vsb.vea.project.models.MainPost))}">
+                        Comment
+                    </th:block>
+                </td>
+                <td>
+                    <th:block th:if="${post instanceof T( cz.vsb.vea.project.models.MainPost)}">
+                        <a th:text="${post.content}" th:href="@{/post/{id}/detail(id=${post.id})}"></a>
+                    </th:block>
+                    <th:block th:if="${!(post instanceof T( cz.vsb.vea.project.models.MainPost))}">
+                        <div th:text="${post.content}"></div>
+                    </th:block>
+                </td>
                 <td th:text="${post.date}"></td>
             </tr>
             </tbody>

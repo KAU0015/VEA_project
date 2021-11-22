@@ -9,19 +9,19 @@ import java.util.List;
 @Entity
 public class MainPost extends Post{
 
-    @NotNull
+    @NotEmpty(message = "Cannot be empty!")
     private String title;
 
     public MainPost() {
         super();
     }
 
-    public MainPost(LocalDateTime date, @NotEmpty String content, User user, List<Comment> comments, @NotNull String title) {
+    public MainPost(LocalDateTime date, @NotEmpty String content, User user, List<Comment> comments, @NotEmpty String title) {
         super(date, content, user, comments);
         this.title = title;
     }
 
-    public MainPost(long id, LocalDateTime date, @NotEmpty String content, User user, List<Comment> comments, @NotNull String title) {
+    public MainPost(long id, LocalDateTime date, @NotEmpty String content, User user, List<Comment> comments, @NotEmpty String title) {
         super(id, date, content, user, comments);
         this.title = title;
     }

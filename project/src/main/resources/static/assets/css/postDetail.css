@@ -77,11 +77,27 @@ input{
 }
 
 .post-head{
-    display: flex;
+    font-size: larger;
+    text-align: left;
+    display: block;
 }
 
 .post-head div{
-    margin: 10px;
+    margin: 11px;
+    float: right;
+}
+
+.post-head a{
+        border: none;
+        color: white;
+        font-size: x-large;
+        text-decoration: underline;
+        cursor: pointer;
+        margin-top: 6px;
+}
+
+.post-head a:hover{
+        color: lightskyblue;
 }
 
 form{
@@ -91,7 +107,7 @@ form{
 }
 
 .post-block{
-    font-size: larger;
+    font-size: large;
 }
 
 .post-block textarea{
@@ -116,6 +132,20 @@ form{
     margin-left: 10px;
     margin-bottom: 10px;
     text-align: left;
+    font-size: larger;
+    max-width: 500px;
+    margin-top: 10;
+    width: 100%;
+    display: grid;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+
 }
 
 .add-comment-btn{

@@ -22,7 +22,7 @@ public class MainPostRepositoryJpa implements MainPostRepositoryInterface {
 
     @Override
     public List<MainPost> getAllMainPosts() {
-        return em.createQuery("select mp from MainPost mp", MainPost.class).getResultList();
+        return em.createQuery("select mp from MainPost mp order by mp.date desc", MainPost.class).getResultList();
     }
 
     @Transactional

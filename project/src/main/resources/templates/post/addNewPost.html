@@ -29,7 +29,7 @@
         <div class="form-title">
             Add New Post
         </div>
-        <form class="add-new-post-form" th:action="@{/post/add}" action="save" method="post" th:object="${post}">
+        <form class="add-new-post-form" th:action="@{/post/add}" action="save" method="post" th:object="${mainPost}">
             <input type="hidden" th:field="*{id}" />
             <table>
                 <tr>

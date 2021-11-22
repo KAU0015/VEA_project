@@ -18,7 +18,7 @@ public class Post {
 
     protected LocalDateTime date;
 
-    @NotEmpty
+    @NotEmpty(message = "Cannot be empty!")
     protected String content;
 
     @Column(name = "user_id", insertable = false, updatable = false)

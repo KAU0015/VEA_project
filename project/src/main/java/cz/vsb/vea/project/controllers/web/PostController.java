@@ -37,21 +37,21 @@ public class PostController {
 
     @RequestMapping("/add_post")
     public String createNewPost(Model model) {
-        model.addAttribute("post", new MainPost());
+        model.addAttribute("mainPost", new MainPost());
         return "post/addNewPost";
     }
 
     @RequestMapping("/post/add")
-    public String addNewPost(@ModelAttribute @Validated MainPost post, BindingResult postError, Model model, Principal principal) {
+    public String addNewPost(@ModelAttribute @Validated MainPost mainPost, BindingResult postError, Model model, Principal principal) {
         User user = userService.findByUsername(principal.getName());
 
         if(postError.hasErrors()) {
-            model.addAttribute("post", post);
+            model.addAttribute("mainPost", mainPost);
             System.out.println("error");
             return "post/addNewPost";
         }
 
-        postService.addNewPost(post, user);
+        postService.addNewPost(mainPost, user);
 
         return "redirect:/posts";
     }
@@ -64,13 +64,21 @@ public class PostController {
         return "post/postDetail";
     }
 
-    @RequestMapping("/post/{id}/comment/add")
-    public String addComment(@PathVariable long id, @ModelAttribute @Validated Comment newComment, Model model, BindingResult commentError, Principal principal){
+    @RequestMapping("main/{mainId}/post/{id}/comment/add")
+    public String addComment(@PathVariable long mainId, @PathVariable long id, @ModelAttribute @Validated Comment newComment, Model model, BindingResult commentError, Principal principal){
+
+        if(commentError.hasErrors()) {
+            model.addAttribute("newComment", newComment);
+            System.out.println("error");
+            return "redirect:/post/" + mainId + "/detail";
+        }
+
+
         Post post = postService.findPost(id);
         User user = userService.findByUsername(principal.getName());
 
         postService.addComment(post, newComment, user);
 
-        return "redirect:/posts";
+        return "redirect:/post/" + mainId + "/detail";
     }
 }

@@ -5,7 +5,7 @@
       layout:decorate="layout">
 <head>
     <meta charset="UTF-8">
-    <title>View post</title>
+    <title>View Post</title>
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/postDetail.css}" />
 </head>
 <body>
@@ -30,7 +30,7 @@
     <div class="form-title" th:text="${mainPost.title}"></div>
 
     <div class="view-post-form">
-        <div th:replace="post/commentBlock.html :: commentBlock(post=${mainPost}, padding=20)">
+        <div th:replace="post/commentBlock.html :: commentBlock(mainId=${mainPost.id}, post=${mainPost}, padding=20)">
         </div>
     </div>
 </div>

@@ -1,6 +1,8 @@
 package cz.vsb.vea.project.controllers.web;
 
+import cz.vsb.vea.project.models.Post;
 import cz.vsb.vea.project.models.User;
+import cz.vsb.vea.project.services.PostService;
 import cz.vsb.vea.project.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private PostService postService;
+
     @RequestMapping("/user/add")
     public String addNewUser(@ModelAttribute @Validated User user, BindingResult userError, Model model) {
         User existingUser = userService.findByUsername(user.getUsername());
@@ -44,7 +49,8 @@ public class UserController {
     @RequestMapping("/dashboard")
     public String test(Model model, Principal principal) {
         User user = userService.findByUsername(principal.getName());
-        model.addAttribute("user", user);
+        List<Post> posts = postService.get10LastPosts(user.getId());
+        model.addAttribute("posts", posts);
         return "user/dashboard";
     }
 

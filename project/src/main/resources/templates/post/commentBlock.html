@@ -1,12 +1,12 @@
-<div th:fragment="commentBlock (post, padding)">
+<div th:fragment="commentBlock (mainId, post, padding)">
     <div class="post-block">
         <div class="post-head">
-            <div th:text="${post.user.username}"></div>
+            <a th:text="${post.user.username}" th:href="@{/user/{id}/detail(id=${post.user.id})}"></a>
             <div th:text="${post.date}"></div>
         </div>
         <div class="post-content" th:text="${post.content}"></div>
 
-        <form class="add-comment" th:action="@{/post/{id}/comment/add(id=${post.id})}" action="save" method="post" th:object="${newComment}">
+        <form class="add-comment" th:action="@{/main/{mainId}/post/{id}/comment/add(mainId=${mainId}, id=${post.id})}" action="save" method="post" th:object="${newComment}">
             <input type="hidden" th:field="*{id}" />
             <textarea th:field="*{content}" />
             <div th:if="${#fields.hasErrors('content')}"
@@ -17,7 +17,7 @@
         </form>
 
         <div th:each="comm,iter :${post.comments}" th:style="'margin-left:' + ${padding} + 'px'">
-            <div th:replace="post/commentBlock.html :: commentBlock(post=${comm}, padding=${20})">
+            <div th:replace="post/commentBlock.html :: commentBlock(mainId=${mainId}, post=${comm}, padding=${20})">
             </div>
         </div>
     </div>

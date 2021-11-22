@@ -9,4 +9,5 @@ public interface PostRepositoryInterface {
     public List<Post> getAllPosts();
     public Post save(Post p);
     public Post find(long id);
+    public List<Post> find10LastPosts(long userId);
 }

@@ -52,4 +52,8 @@ public class PostService {
         commentRepository.save(comment);
 
     }
+
+    public List<Post> get10LastPosts(long userId){
+        return postRepository.find10LastPosts(userId);
+    }
 }
