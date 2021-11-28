@@ -39,18 +39,19 @@ public class MainPostRepository implements MainPostRepositoryInterface {
             }
             String sqlCreateTable;
             if ("H2".equals(dbProducerName)) {
-                sqlCreateTable = "CREATE TABLE IF NOT EXISTS main_post(id BIGINT NOT NULL AUTO_INCREMENT," +
+                sqlCreateTable = "CREATE TABLE main_post(id INTEGER NOT NULL AUTO_INCREMENT," +
                         " date TIMESTAMP, " +
                         " content varchar(255) not null, " +
-                        " user_id int not null, " +
-                        " title varchar(255) not null)";
+                        " user_id int not null REFERENCES user(id), " +
+                        " title varchar(255) not null," +
+                        " CONSTRAINT MainPost_PK PRIMARY KEY (id))";
             } else {
                 throw new RuntimeException("Unsupported database type");
             }
             jdbcTemplate.update(sqlCreateTable);
+            System.out.println("MainPost table created");
         } catch (DataAccessException e) {
             System.out.println("Table already exists.");
-            e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }

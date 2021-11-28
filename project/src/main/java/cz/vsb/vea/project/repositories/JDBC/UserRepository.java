@@ -1,5 +1,6 @@
 package cz.vsb.vea.project.repositories.JDBC;
 
+import cz.vsb.vea.project.converters.LocalDateTimestampConverter;
 import cz.vsb.vea.project.models.User;
 import cz.vsb.vea.project.repositories.JDBC.mappers.UserMapper;
 import cz.vsb.vea.project.repositories.UserRepositoryInterface;
@@ -26,7 +27,9 @@ import java.util.List;
 public class UserRepository implements UserRepositoryInterface {
 
     private JdbcTemplate jdbcTemplate;
-    private SimpleJdbcInsert userInsert;
+
+    @Autowired
+    LocalDateTimestampConverter localDateTimestampConverter;
 
     @Autowired
     public void setDataSource(DataSource dataSource) {
@@ -43,19 +46,20 @@ public class UserRepository implements UserRepositoryInterface {
             }
             String sqlCreateTable;
             if ("H2".equals(dbProducerName)) {
-                sqlCreateTable = "CREATE TABLE IF NOT EXISTS user(id BIGINT NOT NULL AUTO_INCREMENT," +
+                sqlCreateTable = "CREATE TABLE user(id INTEGER NOT NULL AUTO_INCREMENT," +
                         " username varchar(255) not null, " +
-                        " firstName varchar(255) not null, " +
-                        " lastName varchar(255) not null, " +
-                        " dateOfBirth date, " +
-                        " password varchar (128) not null)";
+                        " first_name varchar(255) not null, " +
+                        " last_name varchar(255) not null, " +
+                        " day_of_birth TIMESTAMP, " +
+                        " password varchar (128) not null," +
+                        " CONSTRAINT User_PK PRIMARY KEY (id))";
             } else {
                 throw new RuntimeException("Unsupported database type");
             }
             jdbcTemplate.update(sqlCreateTable);
+            System.out.println("User table created");
         } catch (DataAccessException e) {
             System.out.println("Table already exists.");
-            e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -69,11 +73,15 @@ public class UserRepository implements UserRepositoryInterface {
     @Override
     public void save(User u) {
         if (u.getId() == 0) {
-            BeanPropertySqlParameterSource source = new BeanPropertySqlParameterSource(u);
-            userInsert.executeAndReturnKey(source);
+            jdbcTemplate.update("insert into user (username, first_name, last_name, day_of_birth, password) values (?, ?, ?, ?, ?)",
+                    u.getUsername(), u.getFirstName(), u.getLastName(), localDateTimestampConverter.convert(u.getDayOfBirth()), u.getPassword()
+                    );
         } else {
           /*  jdbcTemplate.update("update user set firstName=?, lastName=?, dayOfBirth=? where id=?",
                     person.getName(), person.getSurname(),  person.getShipId()!=0?person.getShipId():null, person.getId());*/
+            jdbcTemplate.update("update user set first_name=?, last_name=?, day_of_birth=? where id=?",
+                    new Object[]{u.getFirstName(), u.getLastName(), localDateTimestampConverter.convert(u.getDayOfBirth()), u.getId()}
+            );
         }
     }
 

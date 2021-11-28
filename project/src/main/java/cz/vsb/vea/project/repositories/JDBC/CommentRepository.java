@@ -39,17 +39,19 @@ public class CommentRepository implements CommentRepositoryInterface {
             }
             String sqlCreateTable;
             if ("H2".equals(dbProducerName)) {
-                sqlCreateTable = "CREATE TABLE IF NOT EXISTS comment(id BIGINT NOT NULL AUTO_INCREMENT," +
+                sqlCreateTable = "CREATE TABLE comment(id INTEGER NOT NULL AUTO_INCREMENT," +
                         " date TIMESTAMP, " +
                         " content varchar(255) not null, " +
-                        " post_id int not null)";
+                        " user_id int not null REFERENCES user(id), " +
+                        " post_id int not null REFERENCES post(id), " +
+                        " CONSTRAINT Comment_PK PRIMARY KEY (id))";
             } else {
                 throw new RuntimeException("Unsupported database type");
             }
             jdbcTemplate.update(sqlCreateTable);
+            System.out.println("Comment table created");
         } catch (DataAccessException e) {
             System.out.println("Table already exists.");
-            e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }

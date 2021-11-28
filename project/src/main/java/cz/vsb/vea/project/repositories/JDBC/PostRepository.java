@@ -39,17 +39,18 @@ public class PostRepository implements PostRepositoryInterface {
             }
             String sqlCreateTable;
             if ("H2".equals(dbProducerName)) {
-                sqlCreateTable = "CREATE TABLE IF NOT EXISTS post(id BIGINT NOT NULL AUTO_INCREMENT," +
+                sqlCreateTable = "CREATE TABLE post(id INTEGER NOT NULL AUTO_INCREMENT," +
                         " date TIMESTAMP, " +
                         " content varchar(255) not null, " +
-                        " user_id int not null)";
+                        " user_id int not null REFERENCES user(id)," +
+                        " CONSTRAINT Post_PK PRIMARY KEY (id))";
             } else {
                 throw new RuntimeException("Unsupported database type");
             }
             jdbcTemplate.update(sqlCreateTable);
+            System.out.println("Post table created");
         } catch (DataAccessException e) {
             System.out.println("Table already exists.");
-            e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }

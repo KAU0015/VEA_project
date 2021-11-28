@@ -13,15 +13,15 @@ import java.sql.SQLException;
 public class UserMapper implements RowMapper<User> {
 
     @Autowired
-    LocalDateConverter localDateConverter;
+    LocalDateConverter localDateConverter = new LocalDateConverter();
 
     @Override
     public User mapRow(ResultSet resultSet, int i) throws SQLException {
         return new User(resultSet.getLong("id"),
                 resultSet.getString("username"),
-                resultSet.getString("firstName"),
-                resultSet.getString("lastName"),
-                localDateConverter.convert(resultSet.getTimestamp("dateOfBirth")),
+                resultSet.getString("first_name"),
+                resultSet.getString("last_name"),
+                localDateConverter.convert(resultSet.getTimestamp("day_of_birth")),
                 resultSet.getString("password"),
                 null
         );

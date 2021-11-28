@@ -2,7 +2,8 @@ server:
   port : 8083
 spring:
   datasource:
-    url: jdbc:h2:file:~/vea2.h2
+    url: jdbc:h2:file:./veaProject.h2
+    driverClassName: org.h2.Driver
   messages:
     basename: aaa
   thymeleaf:
