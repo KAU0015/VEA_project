@@ -105,6 +105,6 @@ public class UserRepository implements UserRepositoryInterface {
 
     @Override
     public List<User> getAllUsersNoWithId(long id, String name) {
-        return jdbcTemplate.query("select * from user where id !=? and username like %?%", new Object[]{id, name}, new UserMapper());
+        return jdbcTemplate.query("select * from user where id !=? and username like concat('%', ?,'%')", new Object[]{id, name}, new UserMapper());
     }
 }
