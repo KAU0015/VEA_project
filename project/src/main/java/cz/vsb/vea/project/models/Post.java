@@ -32,7 +32,7 @@ public class Post {
     protected List<Comment> comments;
 
     public Post(){
-        System.out.println("Post constructor");
+
     }
 
     public Post(LocalDateTime date, @NotEmpty String content, User user, List<Comment> comments) {
@@ -45,7 +45,6 @@ public class Post {
             this.userId = user.getId();
         }
 
-        System.out.println("Post constructor with params");
     }
 
     public Post(long id, LocalDateTime date, @NotEmpty String content, User user, List<Comment> comments) {
@@ -59,7 +58,6 @@ public class Post {
             this.userId = user.getId();
         }
 
-        System.out.println("Post constructor with params");
     }
 
     public long getId() {

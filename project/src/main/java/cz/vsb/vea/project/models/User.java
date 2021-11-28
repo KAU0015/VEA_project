@@ -35,7 +35,7 @@ public class User {
     private List<Post> posts;
 
     public User(){
-        System.out.println("User constructor");
+
     }
 
     public User(@NotEmpty String username, @NotEmpty String firstName, @NotEmpty String lastName, @NotNull LocalDate dayOfBirth, @NotEmpty String password, List<Post> posts) {
@@ -45,7 +45,6 @@ public class User {
         this.dayOfBirth = dayOfBirth;
         this.password = password;
         this.posts = posts;
-        System.out.println("User constructor with params");
     }
 
     public User(long id, @NotEmpty String username, @NotEmpty String firstName, @NotEmpty String lastName, @NotNull LocalDate dayOfBirth, @NotEmpty String password, List<Post> posts) {
@@ -56,7 +55,6 @@ public class User {
         this.dayOfBirth = dayOfBirth;
         this.password = password;
         this.posts = posts;
-        System.out.println("User constructor with params");
     }
 
     public long getId() {

@@ -15,10 +15,6 @@ public class UserService {
 
     public void createUser(User u){
         userRepository.save(u);
-
-        for(User uu:userRepository.getAllUsers()){
-            System.out.println(uu.getUsername() + uu.getFirstName());
-        }
     }
 
     public List<User> getUsers(){
