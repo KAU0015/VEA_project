@@ -1,5 +1,6 @@
 package cz.vsb.vea.project.models;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -7,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@DiscriminatorValue(value = "mainPost")
 public class MainPost extends Post{
 
     @NotEmpty(message = "Cannot be empty!")

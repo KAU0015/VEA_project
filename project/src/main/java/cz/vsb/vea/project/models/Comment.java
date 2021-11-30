@@ -1,5 +1,6 @@
 package cz.vsb.vea.project.models;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -9,9 +10,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@DiscriminatorValue(value = "comment")
 public class Comment extends Post{
 
     @ManyToOne
+    @JoinColumn(name="post_id")
     private Post post;
 
     @JoinColumn(name = "post_id", insertable = false, updatable = false)

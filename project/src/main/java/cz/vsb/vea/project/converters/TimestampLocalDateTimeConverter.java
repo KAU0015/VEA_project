@@ -4,14 +4,15 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Component
-public class LocalDateConverter implements Converter<Timestamp, LocalDate> {
+public class TimestampLocalDateTimeConverter implements Converter<Timestamp, LocalDateTime> {
+
     @Override
-    public LocalDate convert(Timestamp timestamp) {
+    public LocalDateTime convert(Timestamp timestamp) {
         if(timestamp == null)
             return null;
-        return timestamp.toLocalDateTime().toLocalDate();
+        return timestamp.toLocalDateTime();
     }
 }

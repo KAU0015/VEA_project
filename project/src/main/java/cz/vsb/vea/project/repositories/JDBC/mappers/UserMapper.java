@@ -1,6 +1,6 @@
 package cz.vsb.vea.project.repositories.JDBC.mappers;
 
-import cz.vsb.vea.project.converters.LocalDateConverter;
+import cz.vsb.vea.project.converters.TimestampLocalDateConverter;
 import cz.vsb.vea.project.models.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +9,12 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class UserMapper implements RowMapper<User> {
 
     @Autowired
-    LocalDateConverter localDateConverter = new LocalDateConverter();
+    TimestampLocalDateConverter timestampLocalDateConverter = new TimestampLocalDateConverter();
 
     @Override
     public User mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -21,7 +22,7 @@ public class UserMapper implements RowMapper<User> {
                 resultSet.getString("username"),
                 resultSet.getString("first_name"),
                 resultSet.getString("last_name"),
-                localDateConverter.convert(resultSet.getTimestamp("day_of_birth")),
+                timestampLocalDateConverter.convert(resultSet.getTimestamp("day_of_birth")),
                 resultSet.getString("password"),
                 null
         );

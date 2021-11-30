@@ -10,24 +10,28 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class MainPostMapper implements RowMapper<MainPost> {
+public class MainPostUserMapper implements RowMapper<MainPost> {
 
     @Autowired
     TimestampLocalDateTimeConverter timestampLocalDateTimeConverter = new TimestampLocalDateTimeConverter();
-
-    @Autowired
-    TimestampLocalDateConverter timestampLocalDateConverter = new TimestampLocalDateConverter();
 
     @Override
     public MainPost mapRow(ResultSet resultSet, int i) throws SQLException {
         MainPost mainPost = new MainPost(resultSet.getLong("id"),
                 timestampLocalDateTimeConverter.convert(resultSet.getTimestamp("date")),
                 resultSet.getString("content"),
-                null,
+                new User(resultSet.getLong("u_id"),
+                        resultSet.getString("username"),
+                        null,
+                        null,
+                        null,
+                        null,
+                        null
+                ),
                 null,
                 resultSet.getString("title")
         );
-        mainPost.setUserId(resultSet.getLong("user_id"));
+        mainPost.setUserId(resultSet.getLong("u_id"));
         return mainPost;
     }
 }

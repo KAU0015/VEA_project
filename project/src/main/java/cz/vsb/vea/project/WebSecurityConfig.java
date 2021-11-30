@@ -61,17 +61,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
 
-      /*  http.authorizeRequests()
-                .antMatchers("/", "/create_account").permitAll()
-                .antMatchers("/*").authenticated().and().formLogin().loginProcessingUrl("/login")
-                .loginPage("/").permitAll()
-                .defaultSuccessUrl("/dashboard")
-                .failureUrl("/login?error=true")
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .and().logout().permitAll().invalidateHttpSession(true).logoutSuccessUrl("/login?logout").permitAll()
-                .and().exceptionHandling().accessDeniedPage("/403");*/
-
         http.authorizeRequests()
                 .antMatchers("/", "/create_account", "/user/add").permitAll()
                 .antMatchers("/rest/**").permitAll()

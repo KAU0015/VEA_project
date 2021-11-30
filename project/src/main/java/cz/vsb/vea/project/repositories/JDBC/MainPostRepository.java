@@ -1,6 +1,10 @@
 package cz.vsb.vea.project.repositories.JDBC;
 
+import cz.vsb.vea.project.converters.LocalDateTimeTimestampConverter;
+import cz.vsb.vea.project.models.Comment;
 import cz.vsb.vea.project.models.MainPost;
+import cz.vsb.vea.project.models.Post;
+import cz.vsb.vea.project.repositories.JDBC.mappers.*;
 import cz.vsb.vea.project.repositories.MainPostRepositoryInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -25,13 +29,16 @@ public class MainPostRepository implements MainPostRepositoryInterface {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
+    LocalDateTimeTimestampConverter localDateTimeTimestampConverter = new LocalDateTimeTimestampConverter();
+
+    @Autowired
     public void setDataSource(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     @PostConstruct
     public void init() {
-        try {
+      /*  try {
             String dbProducerName;
             try (Connection con = jdbcTemplate.getDataSource().getConnection()) {
                 DatabaseMetaData metaData = con.getMetaData();
@@ -54,21 +61,41 @@ public class MainPostRepository implements MainPostRepositoryInterface {
             System.out.println("Table already exists.");
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     @Override
     public List<MainPost> getAllMainPosts() {
-        return null;
+        return jdbcTemplate.query("select p.id id, p.date date, p.content content, p.title title, u.id u_id, u.username username, u.first_name first_name, u.last_name last_name, u.day_of_birth day_of_birth, u.password password from post p join user u on p.user_id = u.id where p.type = 'mainPost' order by p.date desc", new MainPostUserMapper());
     }
 
     @Override
     public MainPost save(MainPost mp) {
-        return null;
+        if (mp.getId() == 0) {
+            jdbcTemplate.update("insert into post (date, content, user_id, title, type) values (?, ?, ?, ?, ?)",
+                    localDateTimeTimestampConverter.convert(mp.getDate()), mp.getContent(), mp.getUser().getId(), mp.getTitle(), "mainPost"
+            );
+        } else {
+            jdbcTemplate.update("update post set date=?, content=?, user_id=? title=? where id=?",
+                    localDateTimeTimestampConverter.convert(mp.getDate()), mp.getContent(), mp.getUserId(), mp.getTitle(), mp.getId()
+            );
+        }
+        return mp;
     }
 
     @Override
     public MainPost find(long id) {
-        return null;
+        MainPost mainPost = jdbcTemplate.queryForObject("select p.id id, p.date date, p.content content, u.id u_id, u.username username, " +
+                "p.title title from post p join user u on u.id = p.user_id where p.id = ?", new Object[]{id}, new MainPostUserMapper());
+        getCommentsRecursive(mainPost);
+        return mainPost;
+    }
+
+    private void getCommentsRecursive(Post post){
+        post.setComments(jdbcTemplate.query("select p.id id, p.date date, p.content content, u.id u_id, u.username username, p.post_id post_id " +
+                "from post p join user u on u.id = p.user_id where p.post_id = ?", new Object[]{post.getId()}, new CommentUserMapper()));
+        for(Comment c : post.getComments()){
+            getCommentsRecursive(c);
+        }
     }
 }

@@ -9,7 +9,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "type")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Post {
 
     @Id

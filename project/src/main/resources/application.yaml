@@ -11,8 +11,8 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
-accessType: jpa
+      ddl-auto: none
+accessType: jdbc
 cxf:
   path: /ws
 management:

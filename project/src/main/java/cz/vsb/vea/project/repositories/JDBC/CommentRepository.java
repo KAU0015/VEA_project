@@ -1,5 +1,6 @@
 package cz.vsb.vea.project.repositories.JDBC;
 
+import cz.vsb.vea.project.converters.LocalDateTimeTimestampConverter;
 import cz.vsb.vea.project.models.Comment;
 import cz.vsb.vea.project.repositories.CommentRepositoryInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +26,16 @@ public class CommentRepository implements CommentRepositoryInterface {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
+    LocalDateTimeTimestampConverter localDateTimeTimestampConverter = new LocalDateTimeTimestampConverter();
+
+    @Autowired
     public void setDataSource(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     @PostConstruct
     public void init() {
-        try {
+      /*  try {
             String dbProducerName;
             try (Connection con = jdbcTemplate.getDataSource().getConnection()) {
                 DatabaseMetaData metaData = con.getMetaData();
@@ -54,7 +58,7 @@ public class CommentRepository implements CommentRepositoryInterface {
             System.out.println("Table already exists.");
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
 
@@ -65,7 +69,16 @@ public class CommentRepository implements CommentRepositoryInterface {
 
     @Override
     public Comment save(Comment c) {
-        return null;
+        if (c.getId() == 0) {
+            jdbcTemplate.update("insert into post (date, content, user_id, post_id, type) values (?, ?, ?, ?, ?)",
+                    localDateTimeTimestampConverter.convert(c.getDate()), c.getContent(), c.getUser().getId(), c.getPost().getId(), "comment"
+            );
+        } else {
+            jdbcTemplate.update("update post set date=?, content=?, user_id=? post_id=? where id=?",
+                    localDateTimeTimestampConverter.convert(c.getDate()), c.getContent(), c.getUserId(), c.getPost().getId(), c.getId()
+            );
+        }
+        return c;
     }
 
     @Override

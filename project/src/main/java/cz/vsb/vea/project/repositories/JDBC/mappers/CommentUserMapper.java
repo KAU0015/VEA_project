@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CommentMapper implements RowMapper<Comment> {
+public class CommentUserMapper implements RowMapper<Comment> {
 
     @Autowired
     TimestampLocalDateTimeConverter timestampLocalDateTimeConverter = new TimestampLocalDateTimeConverter();
@@ -19,11 +19,18 @@ public class CommentMapper implements RowMapper<Comment> {
         Comment comment = new Comment(resultSet.getLong("id"),
                 timestampLocalDateTimeConverter.convert(resultSet.getTimestamp("date")),
                 resultSet.getString("content"),
-                null,
+                new User(resultSet.getLong("u_id"),
+                        resultSet.getString("username"),
+                        null,
+                        null,
+                        null,
+                        null,
+                        null
+                ),
                 null,
                 null
         );
-        comment.setUserId(resultSet.getLong("user_id"));
+        comment.setUserId(resultSet.getLong("u_id"));
         comment.setPostId(resultSet.getLong("post_id"));
         return comment;
     }

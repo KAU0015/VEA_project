@@ -29,7 +29,7 @@ public class UserRepository implements UserRepositoryInterface {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    LocalDateTimestampConverter localDateTimestampConverter;
+    LocalDateTimestampConverter localDateTimestampConverter = new LocalDateTimestampConverter();
 
     @Autowired
     public void setDataSource(DataSource dataSource) {
@@ -77,8 +77,6 @@ public class UserRepository implements UserRepositoryInterface {
                     u.getUsername(), u.getFirstName(), u.getLastName(), localDateTimestampConverter.convert(u.getDayOfBirth()), u.getPassword()
                     );
         } else {
-          /*  jdbcTemplate.update("update user set firstName=?, lastName=?, dayOfBirth=? where id=?",
-                    person.getName(), person.getSurname(),  person.getShipId()!=0?person.getShipId():null, person.getId());*/
             jdbcTemplate.update("update user set first_name=?, last_name=?, day_of_birth=? where id=?",
                     new Object[]{u.getFirstName(), u.getLastName(), localDateTimestampConverter.convert(u.getDayOfBirth()), u.getId()}
             );
