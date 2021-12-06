@@ -5,13 +5,9 @@ import cz.vsb.vea.project.services.PostService;
 import cz.vsb.vea.project.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
+
 import java.util.List;
 
 @RestController
@@ -38,5 +34,21 @@ public class UserRestController {
         User user = userService.findById(id);
         List<User> users = userService.getUserList(user.getId(), null);
         return users;
+    }
+
+    @RequestMapping("/rest/user/{id}/detail")
+    public User userDetail(@PathVariable long id){
+        return userService.getUser(id);
+    }
+
+    @RequestMapping("/rest/user/profile/edit")
+    public ResponseEntity editUser(@RequestBody User user) {
+        User existingUser = userService.findByUsername(user.getUsername());
+        if(existingUser != null && user.getId() != existingUser.getId()){
+            return ResponseEntity.badRequest().body(user);
+        }
+
+        userService.createUser(user);
+        return ResponseEntity.ok(user);
     }
 }
