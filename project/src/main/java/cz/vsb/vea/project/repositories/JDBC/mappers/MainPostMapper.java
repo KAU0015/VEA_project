@@ -12,7 +12,6 @@ import java.sql.SQLException;
 
 public class MainPostMapper implements RowMapper<MainPost> {
 
-    @Autowired
     TimestampLocalDateTimeConverter timestampLocalDateTimeConverter = new TimestampLocalDateTimeConverter();
 
     @Autowired

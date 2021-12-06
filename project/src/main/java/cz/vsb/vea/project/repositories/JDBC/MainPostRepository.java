@@ -28,7 +28,6 @@ public class MainPostRepository implements MainPostRepositoryInterface {
 
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired
     LocalDateTimeTimestampConverter localDateTimeTimestampConverter = new LocalDateTimeTimestampConverter();
 
     @Autowired

@@ -11,7 +11,6 @@ import java.sql.SQLException;
 
 public class CommentMapper implements RowMapper<Comment> {
 
-    @Autowired
     TimestampLocalDateTimeConverter timestampLocalDateTimeConverter = new TimestampLocalDateTimeConverter();
 
     @Override

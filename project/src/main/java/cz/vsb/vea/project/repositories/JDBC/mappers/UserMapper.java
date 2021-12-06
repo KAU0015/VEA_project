@@ -13,7 +13,6 @@ import java.time.LocalDate;
 
 public class UserMapper implements RowMapper<User> {
 
-    @Autowired
     TimestampLocalDateConverter timestampLocalDateConverter = new TimestampLocalDateConverter();
 
     @Override

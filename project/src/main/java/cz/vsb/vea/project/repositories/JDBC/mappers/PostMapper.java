@@ -10,7 +10,6 @@ import java.sql.SQLException;
 
 public class PostMapper implements RowMapper<Post> {
 
-    @Autowired
     TimestampLocalDateTimeConverter timestampLocalDateTimeConverter = new TimestampLocalDateTimeConverter();
 
     @Override

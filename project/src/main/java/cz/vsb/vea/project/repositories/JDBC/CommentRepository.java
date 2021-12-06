@@ -25,7 +25,6 @@ public class CommentRepository implements CommentRepositoryInterface {
 
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired
     LocalDateTimeTimestampConverter localDateTimeTimestampConverter = new LocalDateTimeTimestampConverter();
 
     @Autowired
