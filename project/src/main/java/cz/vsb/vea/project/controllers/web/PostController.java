@@ -67,6 +67,11 @@ public class PostController {
     @RequestMapping("main/{mainId}/post/{id}/comment/add")
     public String addComment(@PathVariable long mainId, @PathVariable long id, @ModelAttribute @Validated Comment newComment, Model model, BindingResult commentError, Principal principal){
 
+        if(newComment.getContent().trim().length() < 1){
+            FieldError error = new FieldError("newComment", "content", "Cannot be empty!");
+            commentError.addError(error);
+        }
+
         if(commentError.hasErrors()) {
             model.addAttribute("newComment", newComment);
             System.out.println("error");

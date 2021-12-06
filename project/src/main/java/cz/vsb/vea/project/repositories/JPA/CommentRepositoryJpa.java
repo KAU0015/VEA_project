@@ -22,7 +22,7 @@ public class CommentRepositoryJpa implements CommentRepositoryInterface {
 
     @Override
     public List<Comment> getAllComments() {
-        return em.createQuery("select c from Comment c", Comment.class).getResultList();
+        return em.createQuery("select * from Comment c", Comment.class).getResultList();
     }
 
     @Transactional

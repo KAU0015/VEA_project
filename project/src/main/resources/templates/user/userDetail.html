@@ -61,7 +61,7 @@
                     <div>Day of birth:</div>
                 </td>
                 <td>
-                    <div th:text="${userDetail.dayOfBirth}"></div>
+                    <div th:text="${#temporals.format(userDetail.dayOfBirth, 'dd.MM.yyyy')}"></div>
                 </td>
             </tr>
         </table>

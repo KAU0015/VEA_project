@@ -47,7 +47,7 @@
                 <tr th:each="post,iter :${mainPosts}">
                     <td><a th:text="${post.title}" th:href="@{/post/{id}/detail(id=${post.id})}"></a></td>
                     <td><a th:text="${post.user.username}" th:href="@{/user/{id}/detail(id=${post.user.id})}"></a></td>
-                    <td th:text="${post.date}"></td>
+                    <td th:text="${#temporals.format(post.date, 'dd.MM.yyyy HH:mm')}"></td>
                 </tr>
             </tbody>
         </table>
