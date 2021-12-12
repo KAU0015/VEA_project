@@ -1,6 +1,6 @@
 package cz.vsb.vea.project.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -33,7 +33,7 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user")
-    @JsonBackReference
+    @JsonIgnore
     private List<Post> posts;
 
     public User(){

@@ -1,12 +1,12 @@
 package cz.vsb.vea.project.controllers.REST;
 
+import cz.vsb.vea.project.models.MainPost;
 import cz.vsb.vea.project.models.User;
 import cz.vsb.vea.project.services.PostService;
 import cz.vsb.vea.project.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 
 import java.util.List;
 
@@ -50,5 +50,11 @@ public class UserRestController {
 
         userService.createUser(user);
         return ResponseEntity.ok(user);
+    }
+
+    @RequestMapping("/rest/post/add")
+    public ResponseEntity addNewPost(@RequestBody MainPost mainPost) {
+        User user = userService.findById(mainPost.getUserId());
+        return ResponseEntity.ok(postService.addNewPost(mainPost, user));
     }
 }

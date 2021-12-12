@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -27,9 +26,11 @@ public class Post {
 
     @ManyToOne
     @JoinColumn(name="user_id")
+    @JsonIgnore
     protected User user;
 
     @OneToMany(mappedBy = "post")
+    @JsonIgnore
     protected List<Comment> comments;
 
     public Post(){

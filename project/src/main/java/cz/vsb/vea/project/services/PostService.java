@@ -30,10 +30,11 @@ public class PostService {
         return mainPostRepository.getAllMainPosts();
     }
 
-    public void addNewPost(MainPost post, User user){
+    public MainPost addNewPost(MainPost post, User user){
         post.setDate(LocalDateTime.now());
         post.setUser(user);
         mainPostRepository.save(post);
+        return post;
     }
 
     public MainPost findMainPost(long id){

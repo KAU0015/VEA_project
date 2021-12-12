@@ -12,7 +12,7 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-accessType: jdbc
+accessType: jpa
 cxf:
   path: /ws
 management:
